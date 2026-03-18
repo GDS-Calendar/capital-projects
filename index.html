@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Projects | Georgetown Day School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gds-green: #126736;
+    --gds-green-light: #53990D;
+    --gds-gold: #E8A825;
+    --gds-dark: #1a1a1a;
+    --gds-text: #2c2c2c;
+    --gds-bg: #f7f7f5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: var(--gds-text);
+    background: var(--gds-bg);
+    line-height: 1.6;
+  }
+
+  /* ── Top bar ── */
+  .top-bar { background: var(--gds-dark); padding: 0.4rem 1.5rem; text-align: right; font-size: 0.72rem; }
+  .top-bar a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 1.25rem; }
+  .top-bar a:hover { color: #fff; }
+
+  /* ── Header / Hero ── */
+  header { background: var(--gds-green); color: #fff; text-align: center; position: relative; overflow: hidden; }
+  .hero-bars { position: absolute; inset: 0; display: flex; gap: 0; opacity: 0.18; pointer-events: none; }
+  .hero-bars .bar { flex: 1; display: flex; flex-direction: column; }
+  .hero-bars .bar span { flex: 1; }
+  .hero-content { position: relative; z-index: 1; padding: 3.5rem 1.5rem 3rem; }
+  .header-school { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.22em; opacity: 0.7; margin-bottom: 0.6rem; font-weight: 600; }
+  header h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; }
+  .hero-wave { display: block; margin: 0.6rem auto 0.8rem; width: 140px; height: 12px; }
+  .hero-wave path { fill: none; stroke: var(--gds-gold); stroke-width: 2.5; stroke-linecap: round; }
+  header .subtitle { font-family: 'Merriweather', Georgia, serif; font-style: italic; font-size: 1.05rem; opacity: 0.85; max-width: 480px; margin: 0 auto; line-height: 1.5; }
+  header::after { content: ''; display: block; height: 5px; background: var(--gds-gold); position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; }
+
+  /* ── Main ── */
+  main { max-width: 1060px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+
+  /* ── Sections ── */
+  .section-heading { font-size: 1.1rem; font-weight: 600; color: var(--gds-green); margin-bottom: 1.25rem; padding-bottom: 0.4rem; border-bottom: 2px solid #c8dcc8; text-transform: uppercase; letter-spacing: 0.04em; }
+  .section-group { margin-bottom: 3rem; }
+
+  /* ── Card grid ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+
+  /* ── Cards ── */
+  .card { background: var(--gds-green); border-radius: 8px; overflow: hidden; color: #fff; display: flex; flex-direction: column; transition: transform 0.15s ease, box-shadow 0.15s ease; position: relative; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(18,103,54,0.25); }
+  .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .card-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #1a7a42 0%, #126736 60%, #0e5229 100%); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; opacity: 0.45; }
+  .card-body { padding: 1.25rem 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .card-body h2 { font-size: 1.1rem; font-weight: 600; line-height: 1.35; margin-bottom: 0.6rem; }
+  .card-meta { font-size: 0.82rem; opacity: 0.65; margin-bottom: 0.3rem; }
+  .card-desc { font-size: 0.85rem; line-height: 1.55; opacity: 0.85; margin-top: 0.75rem; flex: 1; }
+  .card-status { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.2em 0.65em; border-radius: 3px; margin-bottom: 0.5rem; width: fit-content; cursor: default; }
+  .card-status.active { background: rgba(232,168,37,0.3); color: #f5d280; }
+  .card-status.planning { background: rgba(83,153,13,0.3); color: #b5e089; }
+  .card-status.complete { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+
+  /* ── Footer ── */
+  footer { text-align: center; padding: 2rem 1rem; font-size: 0.78rem; color: #888; border-top: 1px solid #ddd; max-width: 1060px; margin: 0 auto; }
+  footer .footer-accent { display: inline-block; width: 30px; height: 3px; background: var(--gds-gold); margin-bottom: 0.75rem; border-radius: 2px; }
+
+  /* ── Edit button (always visible, subtle) ── */
+  .edit-toggle { background: none; border: none; color: #bbb; cursor: pointer; font-size: 0.75rem; padding: 0.3rem 0.5rem; margin-top: 0.5rem; transition: color 0.15s; }
+  .edit-toggle:hover { color: #666; }
+
+  /* ══════════════════════════════════ */
+  /* ── EDIT MODE STYLES ── */
+  /* ══════════════════════════════════ */
+  body.editing .card { outline: 2px dashed rgba(232,168,37,0.5); }
+  body.editing [contenteditable="true"] { outline: 1px dashed rgba(255,255,255,0.3); cursor: text; border-radius: 2px; min-height: 1.2em; }
+  body.editing [contenteditable="true"]:focus { outline: 2px solid var(--gds-gold); background: rgba(0,0,0,0.1); }
+  body.editing .card-status { cursor: pointer; }
+  body.editing .card-status:hover { outline: 2px solid var(--gds-gold); }
+
+  /* Photo upload overlay */
+  .photo-overlay { display: none; position: absolute; top: 0; left: 0; right: 0; height: 200px; background: rgba(0,0,0,0.5); cursor: pointer; z-index: 5; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 600; text-align: center; line-height: 1.4; }
+  body.editing .photo-overlay { display: flex; }
+
+  /* Delete card button */
+  .card-delete { display: none; position: absolute; top: 8px; right: 8px; background: #c0392b; color: #fff; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; line-height: 28px; text-align: center; z-index: 10; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+  .card-delete:hover { background: #e74c3c; }
+  body.editing .card-delete { display: block; }
+
+  /* Add card button */
+  .add-card-btn { display: none; background: none; border: 2px dashed #c8dcc8; color: var(--gds-green); border-radius: 8px; padding: 2rem; cursor: pointer; font-size: 0.9rem; font-weight: 600; min-height: 200px; transition: border-color 0.15s, color 0.15s; }
+  .add-card-btn:hover { border-color: var(--gds-green); color: var(--gds-dark); }
+  body.editing .add-card-btn { display: flex; align-items: center; justify-content: center; }
+
+  /* Floating edit toolbar */
+  .edit-toolbar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--gds-dark); color: #fff; padding: 0.75rem 1.5rem; z-index: 100; align-items: center; justify-content: center; gap: 1rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); font-size: 0.85rem; }
+  body.editing .edit-toolbar { display: flex; }
+  .edit-toolbar button { padding: 0.5rem 1.25rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: 600; font-family: inherit; }
+  .btn-save { background: var(--gds-gold); color: var(--gds-dark); }
+  .btn-save:hover { background: #d49920; }
+  .btn-cancel { background: rgba(255,255,255,0.15); color: #fff; }
+  .btn-cancel:hover { background: rgba(255,255,255,0.25); }
+  .edit-toolbar .edit-status { opacity: 0.6; flex: 1; }
+
+  /* Status dropdown */
+  .status-dropdown { position: absolute; background: #fff; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 20; overflow: hidden; }
+  .status-dropdown button { display: block; width: 100%; padding: 0.5rem 1rem; border: none; background: none; cursor: pointer; font-size: 0.8rem; font-weight: 600; text-align: left; font-family: inherit; color: var(--gds-text); }
+  .status-dropdown button:hover { background: #f0f0f0; }
+
+  /* Hidden file input */
+  .hidden-input { display: none; }
+
+  /* ── Mobile ── */
+  @media (max-width: 680px) {
+    .hero-content { padding: 2.5rem 1.25rem 2rem; }
+    header h1 { font-size: 1.8rem; }
+    main { padding: 1.75rem 1rem 3rem; }
+    .card-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .card img, .card-placeholder { height: 180px; }
+    .photo-overlay { height: 180px; }
+    .top-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="https://www.gds.org">gds.org</a>
+</div>
+
+<header>
+  <div class="hero-bars" aria-hidden="true">
+    <div class="bar"><span style="background:#0e5229"></span><span style="background:#53990D"></span><span style="background:#1a1a1a"></span></div>
+    <div class="bar"><span style="background:#E8A825"></span><span style="background:#126736"></span><span style="background:#53990D"></span><span style="background:#1a1a1a"></span></div>
+    <div class="bar"><span style="background:#126736"></span><span style="background:#E8A825"></span></div>
+    <div class="bar"><span style="background:#1a1a1a"></span><span style="background:#53990D"></span><span style="background:#E8A825"></span><span style="background:#0e5229"></span></div>
+    <div class="bar"><span style="background:#53990D"></span><span style="background:#1a1a1a"></span><span style="background:#126736"></span></div>
+    <div class="bar"><span style="background:#E8A825"></span><span style="background:#126736"></span><span style="background:#53990D"></span></div>
+    <div class="bar"><span style="background:#0e5229"></span><span style="background:#E8A825"></span><span style="background:#1a1a1a"></span><span style="background:#53990D"></span></div>
+    <div class="bar"><span style="background:#126736"></span><span style="background:#53990D"></span></div>
+    <div class="bar"><span style="background:#1a1a1a"></span><span style="background:#E8A825"></span><span style="background:#126736"></span></div>
+    <div class="bar"><span style="background:#53990D"></span><span style="background:#0e5229"></span><span style="background:#E8A825"></span><span style="background:#1a1a1a"></span></div>
+    <div class="bar"><span style="background:#E8A825"></span><span style="background:#126736"></span><span style="background:#53990D"></span></div>
+    <div class="bar"><span style="background:#126736"></span><span style="background:#1a1a1a"></span><span style="background:#E8A825"></span></div>
+    <div class="bar"><span style="background:#53990D"></span><span style="background:#126736"></span><span style="background:#0e5229"></span><span style="background:#E8A825"></span></div>
+    <div class="bar"><span style="background:#1a1a1a"></span><span style="background:#53990D"></span><span style="background:#126736"></span></div>
+    <div class="bar"><span style="background:#E8A825"></span><span style="background:#0e5229"></span><span style="background:#53990D"></span><span style="background:#1a1a1a"></span></div>
+    <div class="bar"><span style="background:#126736"></span><span style="background:#E8A825"></span></div>
+    <div class="bar"><span style="background:#0e5229"></span><span style="background:#1a1a1a"></span><span style="background:#53990D"></span><span style="background:#E8A825"></span></div>
+    <div class="bar"><span style="background:#53990D"></span><span style="background:#126736"></span><span style="background:#1a1a1a"></span></div>
+    <div class="bar"><span style="background:#E8A825"></span><span style="background:#53990D"></span><span style="background:#0e5229"></span></div>
+    <div class="bar"><span style="background:#1a1a1a"></span><span style="background:#126736"></span><span style="background:#E8A825"></span><span style="background:#53990D"></span></div>
+  </div>
+  <div class="hero-content">
+    <div class="header-school">Georgetown Day School</div>
+    <h1>Capital Projects</h1>
+    <svg class="hero-wave" viewBox="0 0 140 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 6 C12 2, 22 10, 32 6 C42 2, 52 10, 62 6 C72 2, 82 10, 92 6 C102 2, 112 10, 122 6 C128 4, 134 2, 138 6"/>
+    </svg>
+    <div class="subtitle">Investing in the spaces where learning happens</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="section-group" data-section="active">
+    <div class="section-heading">Active Projects</div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-placeholder">photo</div>
+        <div class="photo-overlay">Click to add photo</div>
+        <button class="card-delete" title="Remove project">&times;</button>
+        <input type="file" class="hidden-input" accept="image/*">
+        <div class="card-body">
+          <span class="card-status active">In Progress</span>
+          <h2>High School HVAC Modernization</h2>
+          <div class="card-meta">Facilities &middot; Phase 2 of 3</div>
+          <p class="card-desc">Phased upgrade of the high school building's heating, ventilation, and air conditioning systems. Improves classroom climate control while reducing energy consumption and supporting sustainability goals.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-placeholder">photo</div>
+        <div class="photo-overlay">Click to add photo</div>
+        <button class="card-delete" title="Remove project">&times;</button>
+        <input type="file" class="hidden-input" accept="image/*">
+        <div class="card-body">
+          <span class="card-status active">In Progress</span>
+          <h2>Athletic Field Drainage</h2>
+          <div class="card-meta">Grounds &middot; Est. completion Summer 2026</div>
+          <p class="card-desc">Addressing long-standing drainage issues on the main athletic fields to reduce downtime after rain events and extend the usable season. Includes subsurface drainage, regrading, and turf restoration.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-placeholder">photo</div>
+        <div class="photo-overlay">Click to add photo</div>
+        <button class="card-delete" title="Remove project">&times;</button>
+        <input type="file" class="hidden-input" accept="image/*">
+        <div class="card-body">
+          <span class="card-status active">In Progress</span>
+          <h2>Network Infrastructure Refresh</h2>
+          <div class="card-meta">Technology &middot; Campus-wide</div>
+          <p class="card-desc">Replacing aging network switches and wireless access points across both campuses with modern Wi-Fi 6E equipment, improving bandwidth and reliability for 1,075+ students and faculty.</p>
+        </div>
+      </article>
+      <button class="add-card-btn">+ Add Project</button>
+    </div>
+  </div>
+
+  <div class="section-group" data-section="planning">
+    <div class="section-heading">In Planning</div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-placeholder">photo</div>
+        <div class="photo-overlay">Click to add photo</div>
+        <button class="card-delete" title="Remove project">&times;</button>
+        <input type="file" class="hidden-input" accept="image/*">
+        <div class="card-body">
+          <span class="card-status planning">Planning</span>
+          <h2>Lower School Furniture Refresh</h2>
+          <div class="card-meta">Furnishings &middot; Pre-K through Grade 4</div>
+          <p class="card-desc">Replacing aging classroom furniture with flexible, modular seating and work surfaces designed for collaborative and active learning. Two-phase rollout across Lower School classrooms.</p>
+        </div>
+      </article>
+      <button class="add-card-btn">+ Add Project</button>
+    </div>
+  </div>
+
+  <div class="section-group" data-section="completed">
+    <div class="section-heading">Recently Completed</div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-placeholder">photo</div>
+        <div class="photo-overlay">Click to add photo</div>
+        <button class="card-delete" title="Remove project">&times;</button>
+        <input type="file" class="hidden-input" accept="image/*">
+        <div class="card-body">
+          <span class="card-status complete">Complete</span>
+          <h2>Security Camera System Upgrade</h2>
+          <div class="card-meta">Security &middot; Completed Fall 2025</div>
+          <p class="card-desc">Campus-wide replacement of legacy analog cameras with a modern IP-based system offering higher resolution, expanded coverage, and improved remote monitoring for the security team.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-placeholder">photo</div>
+        <div class="photo-overlay">Click to add photo</div>
+        <button class="card-delete" title="Remove project">&times;</button>
+        <input type="file" class="hidden-input" accept="image/*">
+        <div class="card-body">
+          <span class="card-status complete">Complete</span>
+          <h2>HS Science Lab Renovation</h2>
+          <div class="card-meta">Facilities &middot; Completed Summer 2025</div>
+          <p class="card-desc">Full renovation of two high school science labs including new casework, fume hoods, flexible bench configurations, and updated electrical and plumbing infrastructure.</p>
+        </div>
+      </article>
+      <button class="add-card-btn">+ Add Project</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-accent"></div><br>
+  Georgetown Day School &middot; Operations &amp; Innovation &middot; Updated <span id="update-date">March 2026</span>
+  <br>
+  <button class="edit-toggle" onclick="toggleEdit()">Edit this page</button>
+</footer>
+
+<!-- Floating edit toolbar (visible only in edit mode) -->
+<div class="edit-toolbar">
+  <span class="edit-status">Editing mode active</span>
+  <button class="btn-cancel" onclick="cancelEdit()">Cancel</button>
+  <button class="btn-save" onclick="saveAndDownload()">Save &amp; Download</button>
+</div>
+
+<script>
+(function() {
+  const EDIT_PASSWORD = 'gds2026';
+  let isEditing = false;
+  let originalHTML = '';
+
+  // ── Toggle edit mode ──
+  window.toggleEdit = function() {
+    if (isEditing) return;
+    const pw = prompt('Enter edit password:');
+    if (pw !== EDIT_PASSWORD) {
+      if (pw !== null) alert('Incorrect password.');
+      return;
+    }
+    originalHTML = document.documentElement.outerHTML;
+    isEditing = true;
+    document.body.classList.add('editing');
+
+    // Make text fields editable
+    document.querySelectorAll('.card-body h2, .card-meta, .card-desc').forEach(el => {
+      el.setAttribute('contenteditable', 'true');
+    });
+
+    // Wire up photo overlays
+    document.querySelectorAll('.photo-overlay').forEach(overlay => {
+      overlay.onclick = function() {
+        const card = this.closest('.card');
+        card.querySelector('.hidden-input').click();
+      };
+    });
+
+    // Wire up file inputs
+    document.querySelectorAll('.hidden-input').forEach(input => {
+      input.onchange = function() {
+        handlePhotoUpload(this);
+      };
+    });
+
+    // Wire up delete buttons
+    document.querySelectorAll('.card-delete').forEach(btn => {
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        if (confirm('Remove this project?')) {
+          this.closest('.card').remove();
+        }
+      };
+    });
+
+    // Wire up status badge clicks
+    document.querySelectorAll('.card-status').forEach(badge => {
+      badge.onclick = function(e) {
+        e.stopPropagation();
+        showStatusDropdown(this);
+      };
+    });
+
+    // Wire up add buttons
+    document.querySelectorAll('.add-card-btn').forEach(btn => {
+      btn.onclick = function() {
+        addNewCard(this);
+      };
+    });
+  };
+
+  // ── Cancel edit ──
+  window.cancelEdit = function() {
+    if (!confirm('Discard all changes?')) return;
+    location.reload();
+  };
+
+  // ── Photo upload handler ──
+  function handlePhotoUpload(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const card = input.closest('.card');
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const placeholder = card.querySelector('.card-placeholder');
+      const existingImg = card.querySelector('img');
+      if (existingImg) {
+        existingImg.src = e.target.result;
+      } else if (placeholder) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.alt = card.querySelector('h2').textContent;
+        placeholder.replaceWith(img);
+      }
+      card.querySelector('.photo-overlay').textContent = 'Click to change photo';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── Status dropdown ──
+  function showStatusDropdown(badge) {
+    // Remove any existing dropdown
+    document.querySelectorAll('.status-dropdown').forEach(d => d.remove());
+
+    const dropdown = document.createElement('div');
+    dropdown.className = 'status-dropdown';
+
+    const options = [
+      { cls: 'active', label: 'In Progress' },
+      { cls: 'planning', label: 'Planning' },
+      { cls: 'complete', label: 'Complete' }
+    ];
+
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.textContent = opt.label;
+      btn.onclick = function() {
+        badge.className = 'card-status ' + opt.cls;
+        badge.textContent = opt.label;
+        dropdown.remove();
+      };
+      dropdown.appendChild(btn);
+    });
+
+    badge.style.position = 'relative';
+    const rect = badge.getBoundingClientRect();
+    dropdown.style.position = 'fixed';
+    dropdown.style.top = (rect.bottom + 4) + 'px';
+    dropdown.style.left = rect.left + 'px';
+    document.body.appendChild(dropdown);
+
+    // Close on outside click
+    setTimeout(() => {
+      document.addEventListener('click', function closer(e) {
+        if (!dropdown.contains(e.target) && e.target !== badge) {
+          dropdown.remove();
+          document.removeEventListener('click', closer);
+        }
+      });
+    }, 10);
+  }
+
+  // ── Add new card ──
+  function addNewCard(addBtn) {
+    const section = addBtn.closest('.section-group');
+    const sectionType = section.dataset.section;
+    const statusMap = { active: 'active', planning: 'planning', completed: 'complete' };
+    const labelMap = { active: 'In Progress', planning: 'Planning', completed: 'Complete' };
+    const statusCls = statusMap[sectionType] || 'active';
+    const statusLabel = labelMap[sectionType] || 'In Progress';
+
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-placeholder">photo</div>
+      <div class="photo-overlay">Click to add photo</div>
+      <button class="card-delete" title="Remove project">&times;</button>
+      <input type="file" class="hidden-input" accept="image/*">
+      <div class="card-body">
+        <span class="card-status ${statusCls}">${statusLabel}</span>
+        <h2 contenteditable="true">New Project Title</h2>
+        <div class="card-meta" contenteditable="true">Category &middot; Timeline</div>
+        <p class="card-desc" contenteditable="true">Brief description of the project.</p>
+      </div>
+    `;
+
+    // Wire up the new card's controls
+    card.querySelector('.photo-overlay').onclick = function() {
+      card.querySelector('.hidden-input').click();
+    };
+    card.querySelector('.hidden-input').onchange = function() {
+      handlePhotoUpload(this);
+    };
+    card.querySelector('.card-delete').onclick = function(e) {
+      e.stopPropagation();
+      if (confirm('Remove this project?')) card.remove();
+    };
+    card.querySelector('.card-status').onclick = function(e) {
+      e.stopPropagation();
+      showStatusDropdown(this);
+    };
+
+    // Insert before the add button
+    addBtn.parentNode.insertBefore(card, addBtn);
+
+    // Focus the title
+    card.querySelector('h2').focus();
+  }
+
+  // ── Save & Download ──
+  window.saveAndDownload = function() {
+    // Exit edit mode in the DOM first
+    document.body.classList.remove('editing');
+    isEditing = false;
+
+    // Remove contenteditable attributes
+    document.querySelectorAll('[contenteditable]').forEach(el => {
+      el.removeAttribute('contenteditable');
+    });
+
+    // Update the date
+    const now = new Date();
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('update-date').textContent = months[now.getMonth()] + ' ' + now.getFullYear();
+
+    // Remove any leftover dropdowns
+    document.querySelectorAll('.status-dropdown').forEach(d => d.remove());
+
+    // Get the full HTML
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    // Create download
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'capital-projects.html';
+    a.click();
+    URL.revokeObjectURL(url);
+
+    // Reload to clean state
+    setTimeout(() => location.reload(), 500);
+  };
+
+})();
+</script>
+
+</body>
+</html>
