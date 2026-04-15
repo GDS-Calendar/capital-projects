@@ -59,12 +59,23 @@
       .hero-logo { height: 28px; }
       .hero-content { padding: 1.4rem 1.25rem 1.2rem; }
     }
+  
+    /* ── Edit mode ── */
+    .edit-bar { display: none; position: fixed; bottom: 1rem; right: 1rem; z-index: 999; gap: 0.5rem; }
+    body.editing .edit-bar { display: flex; }
+    body.editing [contenteditable] { outline: 2px dashed rgba(232,168,37,0.7); border-radius: 3px; cursor: text; }
+    .edit-bar button { padding: 0.5rem 1rem; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+    .btn-save { background: var(--gds-green); color: #fff; }
+    .btn-cancel { background: #ccc; color: #333; }
+    .edit-trigger { cursor: pointer; opacity: 0.45; font-size: 0.7rem; color: rgba(255,255,255,0.6); text-decoration: none; margin-left: 1rem; }
+    .edit-trigger:hover { opacity: 1; }
   </style>
 </head>
 <body>
 
 <div class="top-bar">
   <a href="https://www.gds.org">gds.org</a>
+  <a class="edit-trigger" onclick="toggleEdit()" href="#">✎ Edit</a>
 </div>
 
 <header>
@@ -79,14 +90,14 @@
   </div>
   <div class="hero-content">
     <img class="hero-logo" src="https://resources.finalsite.net/images/v1742221037/gdsorg/ony2i6oi0mczwjzd1eac/Horiz_GDS.svg" alt="Georgetown Day School">
-    <h1>Capital Projects</h1>
+    <h1 data-editable="true">Capital Projects</h1>
     <svg class="hero-wave" viewBox="0 0 140 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6 C12 2, 22 10, 32 6 C42 2, 52 10, 62 6 C72 2, 82 10, 92 6 C102 2, 112 10, 122 6 C128 4, 134 2, 138 6"></path></svg>
   </div>
 </header>
 
 <main>
   <div class="landing-intro">
-    <p>Georgetown Day School's capital planning hub. Explore current projects, learn about campus impacts, and review past initiatives.</p>
+    <p data-editable="true">Georgetown Day School's capital planning hub. Explore current projects, learn about campus impacts, and review past initiatives.</p>
   </div>
 
   <div class="nav-grid">
@@ -97,8 +108,8 @@
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
       </div>
-      <h2>Campus Impacts &amp; Things to Know</h2>
-      <p>Construction timelines, noise schedules, access changes, and other information affecting daily campus life.</p>
+      <h2 data-editable="true">Campus Impacts &amp; Things to Know</h2>
+      <p data-editable="true">Construction timelines, noise schedules, access changes, and other information affecting daily campus life.</p>
       <span class="arrow">→</span>
     </a>
 
@@ -108,8 +119,8 @@
           <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
         </svg>
       </div>
-      <h2>Current Projects</h2>
-      <p>Active and upcoming capital projects across the GDS campus for the current and future fiscal years.</p>
+      <h2 data-editable="true">Current Projects</h2>
+      <p data-editable="true">Active and upcoming capital projects across the GDS campus for the current and future fiscal years.</p>
       <span class="arrow">→</span>
     </a>
 
@@ -119,8 +130,8 @@
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
         </svg>
       </div>
-      <h2>FY 2025/26 Projects</h2>
-      <p>Archived record of all capital projects planned and completed during the 2025–2026 fiscal year.</p>
+      <h2 data-editable="true">FY 2025/26 Projects</h2>
+      <p data-editable="true">Archived record of all capital projects planned and completed during the 2025–2026 fiscal year.</p>
       <span class="arrow">→</span>
     </a>
 
@@ -131,5 +142,18 @@
   <p>&copy; Georgetown Day School &nbsp;|&nbsp; <a href="https://www.gds.org">gds.org</a></p>
 </footer>
 
+<div class="edit-bar">
+  <button class="btn-cancel" onclick="cancelEdit()">Discard</button>
+  <button class="btn-save" onclick="saveAndDownload()">Save &amp; Download</button>
+</div>
+
+<script>
+(function(){
+  const EDIT_PASSWORD='gds2026';let isEditing=false;
+  window.toggleEdit=function(){if(isEditing)return;const pw=prompt('Enter edit password:');if(pw!==EDIT_PASSWORD){if(pw!==null)alert('Incorrect password.');return;}isEditing=true;document.body.classList.add('editing');document.querySelectorAll('[data-editable]').forEach(el=>{el.setAttribute('contenteditable','true');});};
+  window.cancelEdit=function(){if(!confirm('Discard all changes?'))return;location.reload();};
+  window.saveAndDownload=function(){document.body.classList.remove('editing');isEditing=false;document.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));document.querySelectorAll('.edit-bar').forEach(b=>b.style.display='none');const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='index.html';a.click();URL.revokeObjectURL(url);setTimeout(()=>location.reload(),500);};
+})();
+</script>
 </body>
 </html>
