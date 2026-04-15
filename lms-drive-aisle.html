@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMS Drive Aisle Repair | Capital Projects | Georgetown Day School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Deans Suite & Offices | Capital Projects | Georgetown Day School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gds-green: #126736; --gds-green-light: #53990D;
+    --gds-gold: #E8A825; --gds-dark: #1a1a1a;
+    --gds-text: #2c2c2c; --gds-bg: #f7f7f5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Source Sans 3', -apple-system, sans-serif; color: var(--gds-text); background: var(--gds-bg); line-height: 1.6; }
+
+  /* ── Top bar ── */
+  .top-bar { background: var(--gds-dark); padding: 0.4rem 1.5rem; text-align: right; font-size: 0.72rem; }
+  .top-bar a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 1.25rem; }
+  .top-bar a:hover { color: #fff; }
+
+  /* ── Header ── */
+  header { background: var(--gds-green); color: #fff; text-align: center; position: relative; overflow: hidden; }
+  .hero-bars { position: absolute; inset: 0; display: flex; gap: 0; opacity: 0.18; pointer-events: none; }
+  .hero-bars .bar { flex: 1; display: flex; flex-direction: column; }
+  .hero-bars .bar span { flex: 1; }
+  .hero-content { position: relative; z-index: 1; padding: 2.5rem 1.5rem 2rem; }
+  .hero-logo { display: block; height: 44px; margin: 0 auto 1rem; }
+  .hero-back { display: inline-flex; align-items: center; gap: 0.4rem; color: rgba(255,255,255,0.75); font-size: 0.8rem; font-weight: 600; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem; transition: color 0.15s; }
+  .hero-back:hover { color: #fff; }
+  .hero-back svg { width: 14px; height: 14px; fill: currentColor; }
+  header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.15; }
+  .hero-wave { display: block; margin: 0.5rem auto 0; width: 120px; height: 10px; }
+  .hero-wave path { fill: none; stroke: var(--gds-gold); stroke-width: 2.5; stroke-linecap: round; }
+  header::after { content: ''; display: block; height: 5px; background: var(--gds-gold); }
+
+  /* ── Drawing hero image ── */
+  .drawing-hero { width: 100%; max-height: 420px; object-fit: cover; display: block; border-bottom: 4px solid var(--gds-gold); }
+
+  /* ── Main layout ── */
+  main { max-width: 980px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
+  @media (max-width: 720px) { main { grid-template-columns: 1fr; } }
+
+  /* ── Status badge ── */
+  .status-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.25em 0.75em; border-radius: 3px; background: rgba(83,153,13,0.15); color: var(--gds-green); border: 1px solid rgba(83,153,13,0.3); margin-bottom: 1.25rem; }
+
+  /* ── Section headings ── */
+  .content-section { margin-bottom: 2.5rem; }
+  .section-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gds-green); margin-bottom: 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid #c8dcc8; }
+  .about-text { font-family: 'Merriweather', Georgia, serif; font-size: 0.95rem; line-height: 1.8; color: var(--gds-text); }
+  .about-text p + p { margin-top: 1em; }
+
+  /* ── Impact block ── */
+  .impact-sub { margin-top: 1rem; }
+  .impact-sub-label { font-size: 0.78rem; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+  .impact-text { font-size: 0.9rem; color: #555; font-style: italic; }
+
+  /* ── Updates ── */
+  .update-list { list-style: none; }
+  .update-list li { padding: 1rem 0; border-bottom: 1px solid #e4e4e0; display: grid; grid-template-columns: 90px 1fr; gap: 1rem; align-items: start; }
+  .update-list li:last-child { border-bottom: none; }
+  .update-date { font-size: 0.75rem; font-weight: 700; color: var(--gds-green); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 0.1rem; }
+  .update-body { font-size: 0.88rem; line-height: 1.55; }
+  .update-placeholder { font-size: 0.88rem; color: #aaa; font-style: italic; }
+
+  /* ── Sidebar fact sheet ── */
+  .sidebar { background: #fff; border-radius: 8px; border: 1px solid #e4e4e0; overflow: hidden; position: sticky; top: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .sidebar-header { background: var(--gds-green); color: #fff; padding: 0.85rem 1.25rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+  .fact-row { display: grid; grid-template-columns: 1fr; padding: 0.75rem 1.25rem; border-bottom: 1px solid #f0f0ec; }
+  .fact-row:last-child { border-bottom: none; }
+  .fact-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 0.2rem; }
+  .fact-value { font-size: 0.92rem; font-weight: 600; color: var(--gds-text); }
+  .fact-value.placeholder { color: #bbb; font-weight: 400; font-style: italic; }
+
+  /* ── Footer ── */
+  footer { text-align: center; padding: 2rem 1rem; font-size: 0.78rem; color: #888; border-top: 1px solid #ddd; max-width: 980px; margin: 0 auto; }
+  .footer-accent { display: inline-block; width: 30px; height: 3px; background: var(--gds-gold); margin-bottom: 0.75rem; border-radius: 2px; }
+
+  /* ── Edit mode ── */
+  body.editing [contenteditable="true"] { outline: 1px dashed rgba(18,103,54,0.4); cursor: text; border-radius: 2px; min-height: 1.2em; }
+  body.editing [contenteditable="true"]:focus { outline: 2px solid var(--gds-gold); background: rgba(232,168,37,0.06); }
+  .edit-toolbar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--gds-dark); color: #fff; padding: 0.75rem 1.5rem; z-index: 100; align-items: center; justify-content: center; gap: 1rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); font-size: 0.85rem; }
+  body.editing .edit-toolbar { display: flex; }
+  .edit-toolbar button { padding: 0.5rem 1.25rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: 600; font-family: inherit; }
+  .btn-save { background: var(--gds-gold); color: var(--gds-dark); }
+  .btn-save:hover { background: #d49920; }
+  .btn-cancel { background: rgba(255,255,255,0.15); color: #fff; }
+  .btn-cancel:hover { background: rgba(255,255,255,0.25); }
+  .edit-toolbar .edit-status { opacity: 0.6; flex: 1; }
+  .edit-toggle { background: none; border: none; color: #bbb; cursor: pointer; font-size: 0.75rem; padding: 0.3rem 0.5rem; margin-top: 0.5rem; transition: color 0.15s; }
+  .edit-toggle:hover { color: #666; }
+  @media (max-width: 680px) {
+    header h1 { font-size: 1.6rem; }
+    .hero-content { padding: 2rem 1.25rem 1.5rem; }
+    .hero-logo { height: 34px; }
+    .top-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="https://www.gds.org">gds.org</a>
+  <a href="index.html">← All Projects</a>
+</div>
+
+<header>
+  <div class="hero-bars" aria-hidden="true">
+    <div class="bar"><span style="background:#0e5229"></span><span style="background:#53990D"></span><span style="background:#1a1a1a"></span></div>
+    <div class="bar"><span style="background:#E8A825"></span><span style="background:#126736"></span><span style="background:#53990D"></span><span style="background:#1a1a1a"></span></div>
+    <div class="bar"><span style="background:#126736"></span><span style="background:#E8A825"></span></div>
+    <div class="bar"><span style="background:#1a1a1a"></span><span style="background:#53990D"></span><span style="background:#E8A825"></span><span style="background:#0e5229"></span></div>
+    <div class="bar"><span style="background:#53990D"></span><span style="background:#1a1a1a"></span><span style="background:#126736"></span></div>
+    <div class="bar"><span style="background:#E8A825"></span><span style="background:#126736"></span><span style="background:#53990D"></span></div>
+    <div class="bar"><span style="background:#0e5229"></span><span style="background:#E8A825"></span><span style="background:#1a1a1a"></span><span style="background:#53990D"></span></div>
+    <div class="bar"><span style="background:#126736"></span><span style="background:#53990D"></span></div>
+  </div>
+  <div class="hero-content">
+    <a class="hero-back" href="index.html">
+      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      All Projects
+    </a>
+    <img class="hero-logo" src="https://resources.finalsite.net/images/v1742221037/gdsorg/ony2i6oi0mczwjzd1eac/Horiz_GDS.svg" alt="Georgetown Day School">
+    <h1>LMS Drive Aisle Repair</h1>
+    <svg class="hero-wave" viewBox="0 0 140 12"><path d="M0 6 Q17.5 1 35 6 Q52.5 11 70 6 Q87.5 1 105 6 Q122.5 11 140 6"/></svg>
+  </div>
+</header>
+
+<main>
+  <!-- ── LEFT COLUMN ── -->
+  <div class="main-col">
+
+    <div class="content-section">
+      <span class="status-badge">Complete</span>
+      <div class="section-label">About This Project</div>
+      <div class="about-text">
+        <p contenteditable="false">Targeted concrete repair and leveling of the LMS drive aisle, focusing on bus wheel wear zones along the field retaining wall and the area near the cafeteria exit. The repairs addressed significant cracking and settling that had developed in the most heavily trafficked sections of the drive aisle.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-label">Construction Impact</div>
+      <div class="impact-sub">
+        <div class="impact-sub-label">Work Hours &amp; Noise Impact</div>
+        <p class="impact-text" contenteditable="false">Drive aisle repairs were completed over the summer to minimize impact on school arrival and dismissal operations.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-label">Recent Updates</div>
+      <ul class="update-list">
+        <li>
+          <span class="update-placeholder" style="grid-column:1/-1">No updates yet. Check back as the project progresses.</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-header">Project Details</div>
+    <div class="fact-row">
+      <div class="fact-label">Status</div>
+      <div class="fact-value">Complete</div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-label">Estimated Start Date</div>
+      <div class="fact-value" contenteditable="false">Summer 2025</div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-label">Expected Completion</div>
+      <div class="fact-value" contenteditable="false">Summer 2025</div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-label">Category</div>
+      <div class="fact-value">Facilities</div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-label">Building</div>
+      <div class="fact-value">LMS</div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-label">Architects</div>
+      <div class="fact-value">N/A</div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-label">Contractor</div>
+      <div class="fact-value" contenteditable="false">To be determined</div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-label">Project Manager</div>
+      <div class="fact-value" contenteditable="false">To be determined</div>
+    </div>
+  </aside>
+
+</main>
+
+<footer>
+  <div class="footer-accent"></div><br>
+  Georgetown Day School &middot; Operations &amp; Innovation
+  <br><button class="edit-toggle" onclick="toggleEdit()">Edit this page</button>
+</footer>
+
+<div class="edit-toolbar">
+  <span class="edit-status">Edit mode — click any field to edit</span>
+  <button class="btn-cancel" onclick="cancelEdit()">Cancel</button>
+  <button class="btn-save" onclick="saveAndDownload()">Save &amp; Download</button>
+</div>
+
+<script>
+  const PASSWORD = 'gds2026';
+
+  function toggleEdit() {
+    const pwd = prompt('Enter edit password:');
+    if (pwd !== PASSWORD) { alert('Incorrect password.'); return; }
+    enterEdit();
+  }
+
+  function enterEdit() {
+    document.body.classList.add('editing');
+    document.querySelectorAll('.about-text p, .impact-text, .fact-row .fact-value, .update-body, .update-list .update-placeholder, .update-date').forEach(el => {
+      el.contentEditable = 'true';
+      el.classList.remove('placeholder');
+    });
+  }
+
+  function cancelEdit() {
+    document.body.classList.remove('editing');
+    document.querySelectorAll('[contenteditable="true"]').forEach(el => el.contentEditable = 'false');
+  }
+
+  function saveAndDownload() {
+    document.body.classList.remove('editing');
+    document.querySelectorAll('[contenteditable]').forEach(el => el.contentEditable = 'false');
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], {type:'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'lms-drive-aisle.html';
+    a.click();
+    document.body.classList.add('editing');
+    document.querySelectorAll('.about-text p, .impact-text, .fact-row .fact-value, .update-body, .update-date').forEach(el => el.contentEditable = 'true');
+  }
+</script>
+</body>
+</html>
