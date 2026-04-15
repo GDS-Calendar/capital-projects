@@ -35,12 +35,12 @@
   .hero-bars { position: absolute; inset: 0; display: flex; gap: 0; opacity: 0.18; pointer-events: none; }
   .hero-bars .bar { flex: 1; display: flex; flex-direction: column; }
   .hero-bars .bar span { flex: 1; }
-  .hero-content { position: relative; z-index: 1; padding: 2.5rem 1.5rem 2rem; }
-  .hero-logo { display: block; height: 44px; margin: 0 auto 1rem; }
+  .hero-content { position: relative; z-index: 1; padding: 1.4rem 1.5rem 1.2rem; }
+  .hero-logo { display: block; height: 32px; margin: 0 auto 0.7rem; }
   .hero-back { display: inline-flex; align-items: center; gap: 0.4rem; color: rgba(255,255,255,0.75); font-size: 0.8rem; font-weight: 600; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem; transition: color 0.15s; }
   .hero-back:hover { color: #fff; }
   .hero-back svg { width: 14px; height: 14px; fill: currentColor; }
-  header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.15; }
+  header h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.15; }
   .hero-wave { display: block; margin: 0.5rem auto 0; width: 120px; height: 10px; }
   .hero-wave path { fill: none; stroke: var(--gds-gold); stroke-width: 2.5; stroke-linecap: round; }
   header::after { content: ''; display: block; height: 5px; background: var(--gds-gold); }
@@ -101,9 +101,9 @@
   .edit-toggle { background: none; border: none; color: #bbb; cursor: pointer; font-size: 0.75rem; padding: 0.3rem 0.5rem; margin-top: 0.5rem; transition: color 0.15s; }
   .edit-toggle:hover { color: #666; }
   @media (max-width: 680px) {
-    header h1 { font-size: 1.6rem; }
-    .hero-content { padding: 2rem 1.25rem 1.5rem; }
-    .hero-logo { height: 34px; }
+    header h1 { font-size: 1.3rem; }
+    .hero-content { padding: 1.2rem 1.25rem 1rem; }
+    .hero-logo { height: 26px; }
     .top-bar { display: none; }
   }
 </style>
@@ -112,7 +112,7 @@
 
 <div class="top-bar">
   <a href="https://www.gds.org">gds.org</a>
-  <a href="index.html">← All Projects</a>
+  <a href="current-projects.html">← All Projects</a>
 </div>
 
 <header>
@@ -127,7 +127,7 @@
     <div class="bar"><span style="background:#126736"></span><span style="background:#53990D"></span></div>
   </div>
   <div class="hero-content">
-    <a class="hero-back" href="index.html">
+    <a class="hero-back" href="current-projects.html">
       <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       All Projects
     </a>
