@@ -162,7 +162,7 @@
   <button class="btn-save" onclick="saveAndDownload()">Save &amp; Download</button>
 </div>
 
-<script>
+<script>const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUiaImfl7BIE_0JShD5C_Z30KNE1sf29nHVAxwMmKYC5ZOG12jO4273mps3_b1Ag/pub?gid=380710668&single=true&output=csv';
 (function(){
   const EDIT_PASSWORD='gds2026';let isEditing=false;
   window.toggleEdit=function(){if(isEditing)return;const pw=prompt('Enter edit password:');if(pw!==EDIT_PASSWORD){if(pw!==null)alert('Incorrect password.');return;}isEditing=true;document.body.classList.add('editing');document.querySelectorAll('[data-editable]').forEach(el=>{el.setAttribute('contenteditable','true');});};
