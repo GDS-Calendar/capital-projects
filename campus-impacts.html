@@ -192,10 +192,13 @@ function escHtml(s) {
 // ── Render impacts ──────────────────────────────────────────
 function renderImpacts(rows) {
   const container = document.getElementById('impacts-list');
-  const active = rows.filter(r => (r.status || '').trim() === 'In Progress');
+  const active = rows.filter(r =>
+    (r.status || '').trim() === 'In Progress' &&
+    (r.construction_impact || r.work_hours || r.install_schedule)
+  );
 
   if (active.length === 0) {
-    container.innerHTML = '<p class="no-impacts">No projects are currently in progress.</p>';
+    container.innerHTML = '<p class="no-impacts">No active construction impacts at this time.</p>';
     return;
   }
 
