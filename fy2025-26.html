@@ -158,7 +158,7 @@ function splitLine(line){
 }
 
 function buildCard(row){
-  const imgSrc=CARD_IMAGES[row.slug];
+  const imgSrc=(row.image_file?'images/'+row.image_file:null)||CARD_IMAGES[row.slug];
   const imgHtml=imgSrc?`<img src="${imgSrc}" alt="${escHtml(row.title||'')}">`:
     '<div class="card-placeholder">&#128247;</div>';
   const a=document.createElement('a');

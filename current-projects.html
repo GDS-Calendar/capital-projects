@@ -186,7 +186,7 @@ function buildCard(row){
   const statusMap={'In Progress':'active','Planned':'planning','Complete':'complete'};
   const cls=statusMap[status]||'planning';
   const label=status==='Planned'?'Upcoming':status;
-  const imgSrc=CARD_IMAGES[slug];
+  const imgSrc=(row.image_file?'images/'+row.image_file:null)||CARD_IMAGES[slug];
   const imgHtml=imgSrc?`<img src="${imgSrc}" alt="${escHtml(row.title||'')}">`:
     '<div class="card-placeholder">&#128247;</div>';
   const a=document.createElement('a');
